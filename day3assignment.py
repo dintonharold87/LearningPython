@@ -1,10 +1,10 @@
-phoneNumber=256782058447
+#phoneNumber=256782058447
 pin=88888
 amount=2000000
 charge=1000
 def transaction():
-  verifyNumber=int(input("please enter your phone number:"))
-  if verifyNumber == phoneNumber:
+  verifyPinCode=int(input("please enter your pin:"))
+  if verifyPinCode == pin:
     answer=int(input("would you like to \"Send Money?\" Enter 1\nWould you like to \"Withdraw Money?\" Enter 2\nWould you like to \"View your Balance?\" Enter 3\nPlease enter your selection here:"))
     if answer == 1:
       numberToSendMoney=input("Please enter the phone number you are sending money:")
@@ -12,7 +12,8 @@ def transaction():
       if (amountToSend + charge) <= amount:
         balance= amount-(amountToSend + charge)
         reason=input("Please enter the reason for sending the money:")
-        verifyPin=int(input("please enter your pin:"))
+        print("You are going to send UGX{0} at a charge of UGX{1}".format(amountToSend,charge))
+        verifyPin=int(input("please enter your pin if you would like to continue with this transaction:"))
         if verifyPin == pin:
           print("you have sent UGX", amountToSend, "to", numberToSendMoney, "at a charge of UGX", charge, "and your balance is UGX",balance)
         else:
@@ -21,8 +22,11 @@ def transaction():
         print("You have insufficient funds to complete this transaction")
     elif answer == 2:
       amountToWithdraw=int(input("enter how much you would like to withdraw:"))
-      balanceAfterWithdraw=amount-(charge + amountToWithdraw)
+      
+      
       if  (charge + amountToWithdraw) <= amount:
+        
+        balanceAfterWithdraw= amount-(charge + amountToWithdraw)
         print("You have withdrawn UGX",amountToWithdraw, "at a fee of UGX", charge,"and your balance is UGX",balanceAfterWithdraw)
       else:
         print("You have insufficient funds to complete this transaction")
@@ -31,5 +35,5 @@ def transaction():
     else:
       print("Invalid option, the option entered doesn't exist")
   else:
-    print("The phone number entered is invalid")
+    print("The pin entered is invalid")
 transaction()
