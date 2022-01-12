@@ -59,6 +59,15 @@ def printDetailsToFile():
         f.write('\n')
 marksCalculation()
 printDetailsToFile()
-    
-    
+# import xlsxwriter module
+import xlsxwriter
+# Workbook() takes one, non-optional, argument
+# which is the filename that we want to create.
+studentsWorkbook = xlsxwriter.Workbook("studentResults.xlsx")
+# The workbook object is then used to add new
+# worksheet via the add_worksheet() method.
+outSheet = studentsWorkbook.add_worksheet()   
+# Use the worksheet object to write
+# data via the write() method.
+ 
     

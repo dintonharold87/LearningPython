@@ -28,7 +28,7 @@ def primeFactors(number):
                 flag=False
         if flag==True:
             primeList.append(i)
-    print(primeList)
+    return primeList
     
 primeFactors(300)
     
