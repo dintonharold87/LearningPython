@@ -1,6 +1,7 @@
 import pandas as pd
 
 # Read data from the data file(csv file)
+#  use the pd.read_csv() function to read the data into a DataFrame
 data=pd.read_csv('IMDB-Movie-Data.csv')
 print(data.head())
 
@@ -35,7 +36,7 @@ print(data.describe())
 #Getting more than one column from the data frame
 # print(data[['Rating','Year','Votes','Metascore','Rank']])
 
-""" Indexing, Selecting & Assigning """
+""" STEP 6------Indexing, Selecting & Assigning """
 """ HOW TO ACCESS ROWS / SPECIFIC ROWS WE WANT FROM OUR DATA
 We use loc and iloc methods to achieve this.
 Selection by Label
@@ -55,9 +56,59 @@ print(suicideSquadRow)
 data.iloc[10:15][['Title','Director','Rating','Year','Revenue (Millions)']]
 
 
-""" DATA SELECTION 
+""" STEP 7---DATA SELECTION 
 How we can filter our data """
 
-# Getting data from the year between 2010 and 2011
-yearBetween=data[((data['Year']>=2010)&(data['Year']<=2011))]
+# Getting data from the year between 2010 and 2011 with a rating less than 6
+yearBetween=data[((data['Year']>=2010)&(data['Year']<=2011)&(data['Rating']< 6.0))]
 print(yearBetween)
+
+# GROUP BY OPERATION ON THE DATA
+# first five rows but not in ord
+directorData=data.groupby('Director')[['Rating']].mean().head()
+print(directorData)
+
+# min average(rating) of each director{last five rows}
+averageData=data.groupby('Director')[['Rating']].min().tail()
+print(averageData)
+
+# SORTING OPERATIONS ON OUR DATA
+
+# sorted data of the last five rows of the directors with the least rating in descending order
+sorted_data=data.groupby('Director')[['Rating']].mean().sort_values(['Rating'],ascending=False).tail()
+print(sorted_data)
+
+""" DEALING WITH MISSING VALUES IN YOUR DATASET """
+
+# Finding out which columns have some missing values 
+""" sum()
+Returns the sum of the values for the requested axis. By default, axis is index (axis=0) """
+print(data.isnull().sum())
+
+""" STEP-8 DROPPING ROWS WITH NULL VALUES 
+This can be achieved using two methods
+first method:drop method
+this ignores the column,inplace=True deletes the column temporarily
+
+second method:dropna method"""
+
+# dropping the Metascore column
+# DataFrame − “index” (axis=0, default), “columns” (axis=1)
+print(data.drop('Metascore',axis=1).head())
+
+#  This deletes all columns with missing values and null values
+# print(data.dropna('Metascore',axis=1))
+
+# To delete rows with missing values and null values
+# data.dropna()
+
+
+meanRevenue=indexed_data['Revenue (Millions)'].mean()
+print("The mean revenue is:",meanRevenue)
+
+""" step 9-handle missing values in the revenue coulumn.
+The fillna function can “fill in” NA values """
+indexed_data['Revenue (Millions)'].fillna(meanRevenue,inplace=True)
+
+# Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects to Check for Missing Values 
+print(indexed_data.isnull().sum())
