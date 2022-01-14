@@ -42,14 +42,30 @@ print(indexed_avocado_data.iloc[3:12]['Total Bags'])
 print(indexed_avocado_data.iloc[3:12][['Total Bags','Small Bags','Large Bags','XLarge Bags']])
 
 """  View information of a specific row using Label-based selection """
-# viewing information of the first five rows with an index of 3
+# viewing information of the first five rows with an index of 3 and 4
 
 print(indexed_avocado_data.loc[[3,4]][['Total Bags','Small Bags','Large Bags','XLarge Bags']].head())
 
-# view information of the last five rows
+# view information of the last five rows with an index of 12
 print(indexed_avocado_data.loc[[12]][['Total Bags','Small Bags','Large Bags','XLarge Bags']].tail())
+
+""" DATA SELECTION """
+
+# Getting data about avocados in small bags less than 4000 and avocados in large bags less than 100 and they have a type of organic
+print(indexed_avocado_data[((indexed_avocado_data['Small Bags']>8000)&(indexed_avocado_data['Large Bags']<100)&(indexed_avocado_data['type']=='organic'))])
+
+# Getting data about avocados in the region HartfordSpringfield of conventional type and in large bags greater than 100
+print(indexed_avocado_data[((indexed_avocado_data['region']=="HartfordSpringfield")&(indexed_avocado_data['Large Bags']<100)&(indexed_avocado_data['type']=='conventional'))])
+
+""" GROUP BY OPERATION """
+# Getting the data about average number of avocados in large bags in each region
+print(indexed_avocado_data.groupby('region')['Large Bags'].mean())
+
+# Getting data about maximum total bags of avocados collected in each region in each year
+
+print(indexed_avocado_data.groupby(['region','year'])['Total Bags'].max())
 
 # print(indexed_avocado_data.loc[indexed_avocado_data['Large Bags'].isnull()])
 
 # Finding out which columns have some missing values 
-print(indexed_avocado_data.isnull().sum())
+# print(indexed_avocado_data.isnull().sum())

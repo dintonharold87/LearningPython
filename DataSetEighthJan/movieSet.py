@@ -64,6 +64,28 @@ yearBetween=data[((data['Year']>=2010)&(data['Year']<=2011)&(data['Rating']< 6.0
 print(yearBetween)
 
 # GROUP BY OPERATION ON THE DATA
+""" Any groupby operation involves one of the following operations on the original object. They are −
+
+Splitting the Object
+
+Applying a function
+
+Combining the results
+
+In many situations, we split the data into sets and we apply some functionality on each subset. In the apply functionality, we can perform the following operations −
+
+Aggregation − computing a summary statistic
+
+Transformation − perform some group-specific operation
+
+Filtration − discarding the data with some condition
+
+Split Data into Groups
+Pandas object can be split into any of their objects. There are multiple ways to split an object like −
+
+obj.groupby('key')
+obj.groupby(['key1','key2'])
+obj.groupby(key,axis=1) """
 # first five rows but not in ord
 directorData=data.groupby('Director')[['Rating']].mean().head()
 print(directorData)
@@ -73,7 +95,18 @@ averageData=data.groupby('Director')[['Rating']].min().tail()
 print(averageData)
 
 # SORTING OPERATIONS ON OUR DATA
+""" There are two kinds of sorting available in Pandas. They are −
 
+By label
+By Actual Value
+By LABEL
+Using the sort_index() method, by passing the axis arguments and the order of sorting, DataFrame can be sorted. By default, sorting is done on row labels in ascending order. 
+
+Order of Sorting
+By passing the Boolean value to ascending parameter, the order of the sorting can be controlled.
+
+Sort the Columns
+By passing the axis argument with a value 0 or 1, the sorting can be done on the column labels. By default, axis=0, sort by row. Let us consider the following example to understand the same."""
 # sorted data of the last five rows of the directors with the least rating in descending order
 sorted_data=data.groupby('Director')[['Rating']].mean().sort_values(['Rating'],ascending=False).tail()
 print(sorted_data)
