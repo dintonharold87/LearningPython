@@ -72,8 +72,9 @@ print(indexed_avocado_data.groupby(['region'])[['Small Bags']].mean().sort_value
 """ DEALING WITH MISSING VALUES IN YOUR DATASET 
 
 # Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects to Check for Missing Values"""
-print(indexed_avocado_data.isnull().sum())
-print(indexed_avocado_data.loc[indexed_avocado_data['Large Bags'].isnull()])
 
 # Finding out which columns have some missing values 
-# print(indexed_avocado_data.isnull().sum())
+print(indexed_avocado_data.isnull().sum())
+
+
+
