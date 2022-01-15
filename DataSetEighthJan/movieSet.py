@@ -106,12 +106,30 @@ Order of Sorting
 By passing the Boolean value to ascending parameter, the order of the sorting can be controlled.
 
 Sort the Columns
-By passing the axis argument with a value 0 or 1, the sorting can be done on the column labels. By default, axis=0, sort by row. Let us consider the following example to understand the same."""
+By passing the axis argument with a value 0 or 1, the sorting can be done on the column labels. By default, axis=0, sort by row. Let us consider the following example to understand the same.
+
+By Value
+Like index sorting, sort_values() is the method for sorting by values. It accepts a 'by' argument which will use the column name of the DataFrame with which the values are to be sorted."""
 # sorted data of the last five rows of the directors with the least rating in descending order
 sorted_data=data.groupby('Director')[['Rating']].mean().sort_values(['Rating'],ascending=False).tail()
 print(sorted_data)
 
-""" DEALING WITH MISSING VALUES IN YOUR DATASET """
+""" DEALING WITH MISSING VALUES IN YOUR DATASET 
+
+
+Missing data is always a problem in real life scenarios. Areas like machine learning and data mining face severe issues in the accuracy of their model predictions because of poor quality of data caused by missing values. In these areas, missing value treatment is a major point of focus to make their models more accurate and valid.
+
+When and Why Is Data Missed?
+Let us consider an online survey for a product. Many a times, people do not share all the information related to them. Few people share their experience, but not how long they are using the product; few people share how long they are using the product, their experience but not their contact information. Thus, in some or the other way a part of data is always missing, and this is very common in real time.
+
+Let us now see how we can handle missing values (say NA or NaN) using Pandas.
+
+Check for Missing Values
+To make detecting missing values easier (and across different array dtypes), Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects −
+
+Calculations with Missing Data
+When summing data, NA will be treated as Zero
+If the data are all NA, then the result will be NA"""
 
 # Finding out which columns have some missing values 
 """ sum()
@@ -119,6 +137,9 @@ Returns the sum of the values for the requested axis. By default, axis is index 
 print(data.isnull().sum())
 
 """ STEP-8 DROPPING ROWS WITH NULL VALUES 
+
+If you want to simply exclude the missing values, then use the dropna function along with the axis argument. By default, axis=0, i.e., along row, which means that if any value within a row is NA then the whole row is excluded.
+
 This can be achieved using two methods
 first method:drop method
 this ignores the column,inplace=True deletes the column temporarily
@@ -140,8 +161,14 @@ meanRevenue=indexed_data['Revenue (Millions)'].mean()
 print("The mean revenue is:",meanRevenue)
 
 """ step 9-handle missing values in the revenue coulumn.
+
+Cleaning / Filling Missing Data
+Pandas provides various methods for cleaning the missing values. The fillna function can “fill in” NA values with non-null data in a couple of ways
+
 The fillna function can “fill in” NA values """
 indexed_data['Revenue (Millions)'].fillna(meanRevenue,inplace=True)
+
+indexed_data['Metascore'].fillna(0,inplace=True)
 
 # Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects to Check for Missing Values 
 print(indexed_data.isnull().sum())

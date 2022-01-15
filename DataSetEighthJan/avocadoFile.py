@@ -65,7 +65,15 @@ print(indexed_avocado_data.groupby('region')['Large Bags'].mean())
 
 print(indexed_avocado_data.groupby(['region','year'])['Total Bags'].max())
 
-# print(indexed_avocado_data.loc[indexed_avocado_data['Large Bags'].isnull()])
+""" SORTINg DATA """
+# Getting information about the average of smallbags collected in each region in descending order
+print(indexed_avocado_data.groupby(['region'])[['Small Bags']].mean().sort_values(['Small Bags'],ascending=False)) 
+
+""" DEALING WITH MISSING VALUES IN YOUR DATASET 
+
+# Pandas provides the isnull() and notnull() functions, which are also methods on Series and DataFrame objects to Check for Missing Values"""
+print(indexed_avocado_data.isnull().sum())
+print(indexed_avocado_data.loc[indexed_avocado_data['Large Bags'].isnull()])
 
 # Finding out which columns have some missing values 
 # print(indexed_avocado_data.isnull().sum())
