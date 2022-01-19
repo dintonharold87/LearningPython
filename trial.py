@@ -16,3 +16,5 @@ my_eyes = 'Blue'
 my_teeth = 'White'
 my_hair = 'Brown'
 print ("He's got %s eyes and %s hair." % (my_eyes, my_hair))
+name='Dinton'
+print(f'My name is {name}')
