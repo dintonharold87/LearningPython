@@ -1,4 +1,5 @@
 import pandas as pd
+from matplotlib import pyplot as plt
 
 # Reading data from the csv file into a dataframe
 # avocado_data = pd.read_csv('avocado.csv')
@@ -33,3 +34,28 @@ print(least_consumed_type)
 # least consuming region
 least_consuming_region=indexed_avocado_data.groupby(['region'])[['Total Bags']].sum().sort_values(['Total Bags'])
 print(least_consuming_region)
+
+#pie chart represent the  avocado category interms of price
+
+#setting the data to start with date as its index
+# indexed_avocado_data = indexed_avocado_data.set_index('type')
+# data_frame=indexed_avocado_data['AveragePrice']
+# print(my_data)
+# The figure() function in pyplot module of matplotlib library is used to create a new figure.
+# figsize(float, float): These parameter are the width, height in inches.
+# fig = plt.figure(figsize =(10, 7))
+# plt.pie(data_frame,explode=None)
+# plt.show()
+
+# indexed_avocado_data = indexed_avocado_data.set_index('region')
+data_frame=indexed_avocado_data[['Small Bags', 'Large Bags','XLarge Bags','region','type','year','Total Volume']]
+# scatter plot
+
+data_frame.plot(kind='scatter',x='type',y='Small Bags')
+# line plot
+data_frame.plot(kind='line',x='region',y='Large Bags')
+# bar plot
+data_frame.plot(kind='bar',x='year',y='XLarge Bags')
+# Area plot
+data_frame.plot(kind='area',x='region',y='Total Volume')
+plt.show()
