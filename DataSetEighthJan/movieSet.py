@@ -86,7 +86,7 @@ Pandas object can be split into any of their objects. There are multiple ways to
 obj.groupby('key')
 obj.groupby(['key1','key2'])
 obj.groupby(key,axis=1) """
-# first five rows but not in ord
+# first five rows but not in order
 directorData=data.groupby('Director')[['Rating']].mean().head()
 print(directorData)
 

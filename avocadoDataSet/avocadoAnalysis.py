@@ -38,24 +38,34 @@ print(least_consuming_region)
 #pie chart represent the  avocado category interms of price
 
 #setting the data to start with date as its index
-# indexed_avocado_data = indexed_avocado_data.set_index('type')
-# data_frame=indexed_avocado_data['AveragePrice']
+# indexed_avocado_data = indexed_avocado_data.set_index(0)
+data_frame=indexed_avocado_data[['AveragePrice','type']]
 # print(my_data)
 # The figure() function in pyplot module of matplotlib library is used to create a new figure.
-# figsize(float, float): These parameter are the width, height in inches.
-# fig = plt.figure(figsize =(10, 7))
-# plt.pie(data_frame,explode=None)
+#figsize(float, float): These parameter are the width, height in inches.
+#fig = plt.figure(figsize =(5,5))
+organic_data=data_frame.groupby('type')[['AveragePrice']].mean()
+print(organic_data)
+labels=['conventional','organic']
+values=[1.158040,1.653999]
+explode=[0.05,0.0]
+colors = [ "orange", "green"]
+plt.pie(values,labels=labels,autopct='%.1f%%',explode=explode,colors=colors)
+plt.show()
+# explode = (0.4,0.5)
+# 
+# plt.pie(x=data_frame)
 # plt.show()
 
-# indexed_avocado_data = indexed_avocado_data.set_index('region')
-data_frame=indexed_avocado_data[['Small Bags', 'Large Bags','XLarge Bags','region','type','year','Total Volume']]
-# scatter plot
+# # indexed_avocado_data = indexed_avocado_data.set_index('region')
+# data_frame=indexed_avocado_data[['Small Bags', 'Large Bags','XLarge Bags','region','type','year','Total Volume']]
+# # scatter plot
 
-data_frame.plot(kind='scatter',x='type',y='Small Bags')
-# line plot
-data_frame.plot(kind='line',x='region',y='Large Bags')
-# bar plot
-data_frame.plot(kind='bar',x='year',y='XLarge Bags')
-# Area plot
-data_frame.plot(kind='area',x='region',y='Total Volume')
-plt.show()
+# data_frame.plot(kind='scatter',x='type',y='Small Bags')
+# # line plot
+# data_frame.plot(kind='line',x='region',y='Large Bags')
+# # bar plot
+# data_frame.plot(kind='bar',x='year',y='XLarge Bags')
+# # Area plot
+# data_frame.plot(kind='area',x='region',y='Total Volume')
+# plt.show()

@@ -78,4 +78,20 @@ all − Summarizes all columns together (Should not pass it as a list value) """
 # print(indexed_avocado_data.notnull().sum())
 # print(indexed_avocado_data.isnull().sum())
 
+explode = (0.4,0.5)
+colors = ( "orange", "green")
+plt.pie(x=data_frame)
+plt.show()
 
+# indexed_avocado_data = indexed_avocado_data.set_index('region')
+data_frame=indexed_avocado_data[['Small Bags', 'Large Bags','XLarge Bags','region','type','year','Total Volume']]
+# scatter plot
+
+data_frame.plot(kind='scatter',x='type',y='Small Bags')
+# line plot
+data_frame.plot(kind='line',x='region',y='Large Bags')
+# bar plot
+data_frame.plot(kind='bar',x='year',y='XLarge Bags')
+# Area plot
+data_frame.plot(kind='area',x='region',y='Total Volume')
+plt.show()
